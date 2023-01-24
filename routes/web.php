@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\Register\AddressController;
+use \App\Http\Controllers\Register\CompleteController;
 use App\Http\Controllers\Register\DetailsController;
+use \App\Http\Controllers\Register\SubscriptionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,4 +21,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/register', [DetailsController::class, 'index']);
+Route::prefix('register')->group(function() {
+    Route::get('/', [DetailsController::class, 'index']);
+    Route::get('/address', [AddressController::class, 'index']);
+    Route::get('/subscription', [SubscriptionController::class, 'index']);
+    Route::get('/complete', [CompleteController::class, 'index']);
+});
+
+Route::fallback(function() {
+    return "<h1>Sorry, the page does not exist</h1>";
+});
+
+
+

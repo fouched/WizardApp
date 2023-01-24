@@ -8,6 +8,6 @@ class CompleteController extends Controller
 {
     public function index()
     {
-
+        return view('register.complete');
     }
 }
