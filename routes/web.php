@@ -1,9 +1,10 @@
 <?php
 
 use App\Http\Controllers\Register\AddressController;
-use \App\Http\Controllers\Register\CompleteController;
+use App\Http\Controllers\Register\CompleteController;
 use App\Http\Controllers\Register\DetailsController;
-use \App\Http\Controllers\Register\SubscriptionController;
+use App\Http\Controllers\Register\SubscriptionController;
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,11 +18,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+Route::prefix('/')->group(function() {
+    Route::get('', [WelcomeController::class, 'index']);
 });
 
-Route::prefix('register')->group(function() {
+Route::prefix('/register')->group(function() {
     Route::get('/', [DetailsController::class, 'index']);
     Route::get('/address', [AddressController::class, 'index']);
     Route::get('/subscription', [SubscriptionController::class, 'index']);
